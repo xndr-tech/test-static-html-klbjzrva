@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "siteId": "klbjzrva",
+  "name": "Test static HTML",
+  "description": "Skip AI gen.",
+  "siteType": "landing",
+  "colorScheme": "slate",
+  "font": "Nunito",
+  "tags": [
+    "test site"
+  ],
+  "tools": [],
+  "model": "gemini-2.5-flash",
+  "createdAt": 1767211957590,
+  "updatedAt": 1767211957590
+}

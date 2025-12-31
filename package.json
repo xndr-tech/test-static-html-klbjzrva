@@ -1,0 +1,12 @@
+{
+  "name": "test-static-html-klbjzrva",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skip AI gen.",
+  "type": "module",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "wrangler": "^3.96.0",
+    "typescript": "^5.7.2"
+  }
+}

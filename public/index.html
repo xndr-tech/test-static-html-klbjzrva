@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test static HTML - a modern landing page for Skip AI gen.">
+    <meta name="keywords" content="test site, landing page, skip AI gen, static HTML, web development">
+    <title>Test static HTML - Skip AI gen.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-family-primary: 'Nunito', sans-serif;
+            --color-primary: #475569; /* Slate 700 */
+            --color-secondary: #64748B; /* Slate 600 */
+            --color-accent: #22D3EE; /* Cyan 400 */
+            --color-text-dark: #1E293B; /* Slate 900 */
+            --color-text-light: #F8FAFC; /* Slate 50 */
+            --color-background-light: #F1F5F9; /* Slate 100 */
+            --color-background-dark: #334155; /* Slate 800 */
+            --color-border: #CBD5E1; /* Slate 300 */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 5rem;
+            --section-padding: 80px 0;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s ease;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-background-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-dark);
+        }
+
+        h1 { font-size: 3.5rem; line-height: 1.1; }
+        h2 { font-size: 2.5rem; margin-bottom: var(--spacing-lg); }
+        h3 { font-size: 1.8rem; }
+        h4 { font-size: 1.4rem; }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            padding: calc(var(--spacing-sm) - 2px) calc(var(--spacing-lg) - 2px);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            transform: translateY(-2px);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: var(--color-background-light);
+            padding: var(--spacing-sm) 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: var(--spacing-xl);
+        }
+
+        .nav-links a {
+            color: var(--color-text-dark);
+            font-weight: 600;
+            position: relative;
+            padding: var(--spacing-xs) 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            justify-content: space-between;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-text-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            margin-top: -70px; /* Adjust for fixed navbar height */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(71, 85, 105, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(71, 85, 105, 0.4) 0%, transparent 50%);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative; /* Ensure content is above ::before */
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: var(--color-text-light);
+            font-size: 4.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: var(--spacing-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--color-background-light);
+        }
+
+        .hero .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+
+        .hero .btn {
+            font-size: 1.1rem;
+            padding: var(--spacing-md) var(--spacing-xxl);
+        }
+
+        .hero .btn-secondary {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .hero .btn-secondary:hover {
+            background-color: var(--color-accent);
+            color: var(--color-text-dark);
+        }
+
+        /* Sections General */
+        section {
+            padding: var(--section-padding);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--color-background-light);
+        }
+        section:nth-of-type(odd) {
+            background-color: #fff;
+        }
+
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-xxl);
+            position: relative;
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .feature-card {
+            background-color: #fff;
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-card h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-card p {
+            color: var(--color-secondary);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            text-align: center;
+        }
+
+        .testimonials .section-title {
+            color: var(--color-text-light);
+        }
+
+        .testimonials .section-title::after {
+            background-color: var(--color-accent);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .testimonial-card {
+            background-color: var(--color-background-dark);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .testimonial-card blockquote {
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-background-light);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-top: var(--spacing-sm);
+        }
+
+        .testimonial-card .author-title {
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+
+        /* Call to Action Section */
+        .cta {
+            background-color: var(--color-accent);
+            text-align: center;
+            color: var(--color-text-dark);
+            padding: var(--spacing-xxl) 0;
+        }
+
+        .cta h2 {
+            color: var(--color-text-dark);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .cta .btn {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: var(--spacing-md) var(--spacing-xxl);
+            font-size: 1.2rem;
+        }
+
+        .cta .btn:hover {
+            background-color: var(--color-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-text-dark);
+            color: var(--color-background-light);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-nav a {
+            color: var(--color-background-light);
+            font-weight: 600;
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+
+        /* Utility classes for icons (simulated) */
+        .icon-rocket::before { content: '🚀'; }
+        .icon-shield::before { content: '🛡️'; }
+        .icon-star::before { content: '✨'; }
+        .icon-lightbulb::before { content: '💡'; }
+        .icon-check::before { content: '✅'; }
+        .icon-smile::before { content: '😊'; }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 { font-size: 3.8rem; }
+            h2 { font-size: 2.2rem; }
+            .hero p { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                flex-grow: 1;
+                text-align: left;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--color-background-light);
+                padding: var(--spacing-md) 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+                margin-top: var(--spacing-sm);
+                border-radius: var(--border-radius);
+                align-items: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: var(--spacing-sm) 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                padding: var(--spacing-sm) 0;
+                display: block;
+            }
+            .nav-links a::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .hero {
+                padding-top: calc(var(--spacing-xxl) + 70px);
+                min-height: 80vh;
+                margin-top: 0;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .btn-group {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+            .hero .btn {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .section-title {
+                margin-bottom: var(--spacing-xl);
+            }
+            h2 { font-size: 2rem; }
+
+            .features-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card,
+            .testimonial-card {
+                padding: var(--spacing-lg);
+            }
+
+            .cta h2 {
+                font-size: 1.8rem;
+            }
+            .cta p {
+                font-size: 1rem;
+            }
+
+            .footer-nav {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .hero .btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Test static HTML</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="container hero-content">
+            <h1>Escape the AI Echo Chamber. Create Uniquely Human Content.</h1>
+            <p>We believe in the power of genuine, human-crafted ideas. Skip the repetitive, generated content and bring authentic voice back to your projects. Test static HTML is your gateway to originality.</p>
+            <div class="btn-group">
+                <a href="#features" class="btn btn-primary">Discover Our Approach</a>
+                <a href="#cta" class="btn btn-secondary">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Real Human Creation?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon icon-lightbulb"></div>
+                    <h3>Originality Unleashed</h3>
+                    <p>Break free from templated responses. Our approach champions fresh perspectives and truly unique content that stands out.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon icon-shield"></div>
+                    <h3>Authenticity Guaranteed</h3>
+                    <p>Connect with your audience on a deeper level. Human touch ensures your message resonates with genuine emotion and credibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon icon-star"></div>
+                    <h3>Superior Quality</h3>
+                    <p>Experience the difference of nuanced language, creative storytelling, and thoughtful insights that AI often misses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon icon-rocket"></div>
+                    <h3>Future-Proof Strategy</h3>
+                    <p>As AI evolves, so does the demand for truly human work. Invest in content that maintains its value and impact over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Partners Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <span class="icon icon-check"></span>
+                    <blockquote>"Working with Test static HTML shifted our content strategy entirely. The authentic voice they helped us find made a measurable difference in engagement. No AI could replicate this."</blockquote>
+                    <p class="author">Jane Doe</p>
+                    <p class="author-title">Marketing Director, Innovate Corp</p>
+                </div>
+                <div class="testimonial-card">
+                    <span class="icon icon-smile"></span>
+                    <blockquote>"I was skeptical about moving away from AI-assisted tools, but the results speak for themselves. The content is vibrant, thoughtful, and truly reflects our brand's unique personality."</blockquote>
+                    <p class="author">John Smith</p>
+                    <p class="author-title">Founder, Creative Minds Agency</p>
+                </div>
+                <div class="testimonial-card">
+                    <span class="icon icon-star"></span>
+                    <blockquote>"In a sea of generic, AI-generated content, Test static HTML provided a refreshing oasis of originality. Our audience immediately noticed the elevated quality."</blockquote>
+                    <p class="author">Emily White</p>
+                    <p class="author-title">Content Lead, Global Solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta">
+        <div class="container">
+            <h2>Ready to Embrace True Originality?</h2>
+            <p>Stop settling for the mundane. Let us help you craft content that truly resonates and sets you apart in a crowded digital world. Connect with our team and rediscover the power of human creativity.</p>
+            <a href="#" class="btn btn-primary">Start Your Authentic Journey</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-nav">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#cta">Contact</a></li>
+            </ul>
+            <p>&copy; 2025 Test static HTML. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = navMenu.querySelectorAll('a');
+
+            // Mobile menu toggle
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu on link click
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+
+                    if (targetElement) {
+                        let offsetPosition = targetElement.offsetTop - navbarHeight;
+
+                        if (targetId === '#hero') {
+                            // Adjust for hero section which is full viewport and has negative margin
+                            offsetPosition = 0;
+                        }
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Active link highlighting (optional, for more advanced UIs)
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('.nav-links li a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - document.querySelector('.navbar').offsetHeight - 50) { // Offset for navbar
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLi.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
