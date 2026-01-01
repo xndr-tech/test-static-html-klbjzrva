@@ -1,1 +1,103 @@
-<html><p>test!</p></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple boilerplate for testing.">
+    <title>Boilerplate Test Site</title>
+
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* Blue */
+            --bg-color: #f3f4f6;
+            --text-color: #1f2937;
+            --container-width: 800px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 { color: var(--primary-color); }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover { opacity: 0.9; }
+
+        .status-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e5e7eb;
+            border-left: 4px solid var(--primary-color);
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Test Site Running</h1>
+            <p>This is a standard HTML5 boilerplate ready for development.</p>
+        </header>
+
+        <hr>
+
+        <main>
+            <h3>Test Interaction</h3>
+            <p>Click the button below to test JavaScript execution.</p>
+            <button id="testBtn">Run Test</button>
+
+            <div class="status-box" id="output">
+                Waiting for input...
+            </div>
+        </main>
+
+        <footer>
+            <p style="margin-top: 50px; font-size: 0.9em; color: #666;">
+                &copy; <span id="year"></span> Local Test
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Button Logic
+        const btn = document.getElementById('testBtn');
+        const output = document.getElementById('output');
+
+        btn.addEventListener('click', () => {
+            console.log('Test button clicked');
+            output.textContent = `Success! JS executed at ${new Date().toLocaleTimeString()}`;
+            output.style.backgroundColor = "#dcfce7"; // Light green
+            output.style.borderColor = "#22c55e";    // Green border
+        });
+
+        console.log('Boilerplate loaded successfully.');
+    </script>
+</body>
+</html>
