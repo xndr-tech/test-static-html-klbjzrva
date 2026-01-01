@@ -4,13 +4,13 @@
   "name": "Test static HTML",
   "description": "Skip AI gen.",
   "siteType": "landing",
-  "colorScheme": "slate",
-  "font": "Nunito",
+  "colorScheme": "forest",
+  "font": "Outfit",
   "tags": [
     "test site"
   ],
   "tools": [],
   "model": "gemini-2.5-flash",
-  "createdAt": 1767223230239,
-  "updatedAt": 1767223230239
+  "createdAt": 1767296409987,
+  "updatedAt": 1767296409987
 }
